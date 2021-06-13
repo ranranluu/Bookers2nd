@@ -1,0 +1,27 @@
+      <h2>User info</h2>
+      <table class="table table-user">
+        <thead>
+          <tr>
+            <%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.jpg",size:"100x100" %>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>name</th>
+            <th><%= user.name %></th>
+          </tr>
+          <tr>
+            <th>Introduction</th>
+            <th><%= user.introduction %></th>
+          </tr>
+          <tr>
+            <th colspan="2">
+              <% if user.id == current_user.id %>
+                <%= link_to edit_user_path(user) do %>
+                  <i class="fas fa-user-cog"></i>
+                <% end %>
+              <% end %>
+            </th>
+          </tr>
+        </tbody>
+      </table>
