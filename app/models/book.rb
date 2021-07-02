@@ -6,7 +6,8 @@ class Book < ApplicationRecord
     favorites.where(user_id: user.id).exists?
   end
 
-
+  has_many :book_comments, dependent: :destroy
+  
   validates :title, presence: true
   validates :body, presence: true, length: {maximum: 200}
 
