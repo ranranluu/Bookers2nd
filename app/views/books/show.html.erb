@@ -13,6 +13,20 @@
           <td><%= link_to @user.name, user_path(@user) %></td>
           <td><%= link_to @book.title, book_path(@book) %></td>
           <td><%= @book.body %></td>
+          <% if current_user.already_favorited?(@book) %>
+            <td>
+              <%= link_to book_favorites_path(@book), method: :delete do %>
+                ❤<%= @book.favorites.count %>
+              <% end %>
+            </td>
+          <% else %>
+            <td>
+              <%= link_to book_favorites_path(@book), method: :post do %>
+                ♡<%= @book.favorites.count %>
+              <% end %>
+            </td>
+          <% end %>
+
           <% if @book.user_id == current_user.id %>
             <td><%= link_to "Edit", edit_book_path(@book), class:"btn btn-success" %></td>
             <td><%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "本当に消しますか？"}, class:"btn btn-danger" %></td>
