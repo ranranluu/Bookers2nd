@@ -1,4 +1,4 @@
-<%= form_with model:[book, book_comment] do |f| %>
-  <%= f.text_area :comment %>
+<%= form_with(model: [book, book_comment], url: book_book_comments_path(book_id: book), local: false ) do |f| %>
+  <%= f.text_area :comment, id: "comment_form" %>
   <%= f.submit "送信" %>
 <% end %>
